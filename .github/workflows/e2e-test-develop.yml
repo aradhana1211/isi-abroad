@@ -1,0 +1,43 @@
+name: Node.js CI E2E Test Develop
+
+on:
+  push:
+    branches: ['develop']
+  pull_request:
+    branches: ['develop']
+
+jobs:
+  CypressTest:
+    runs-on: ubuntu-latest
+    env:
+      REACT_APP_API_URL: ${{ vars.REACT_APP_API_URL_DEVELOP }}
+      REACT_APP_TINYMCE_API_KEY: ${{ secrets.REACT_APP_TINYMCE_API_KEY_DEVELOP }}
+    strategy:
+      matrix:
+        node-version: ['20.x']
+        containers: [1, 2, 3]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: |
+          cp .env.ci .env
+          echo "REACT_APP_API_URL=\"$REACT_APP_API_URL\"" > .env.ci
+
+      - name: yarn global add serve
+        run: |
+          npm install --global serve
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          build: yarn build
+          record: false
+          start: yarn start
+          wait-on: "http://localhost:3000"
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          SPLIT: ${{ strategy.job-total }}
+          SPLIT_INDEX: ${{ strategy.job-index }}

@@ -1,0 +1,16 @@
+.profile_card {
+  @apply px-7 py-10 lg:px-4 lg:py-5 rounded-md border border-slate-200 hover:shadow-lg transition-all;
+}
+.profile_card .icon {
+  @apply w-24 h-24 rounded-full flex justify-center items-center mx-auto;
+}
+
+.profile_card .number {
+  @apply text-3xl mt-3 font-medium md:text-xl;
+}
+.profile_card .title {
+  @apply text-3xl mt-2 font-semibold md:text-2xl;
+}
+.Mui-focused .MuiOutlinedInput-notchedOutline {
+  @apply !border-primary;
+}

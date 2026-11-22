@@ -1,0 +1,21 @@
+#!/bin/sh
+
+echo "Pre Commit Hook running eslint....";
+# --cached options for staged changes only
+modified_files=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|jsx|ts|tsx)$')
+
+if [ -z "$modified_files" ]; then
+        echo "No .js|.jsx|.ts|.tsx modified files found."
+else
+	for file in $(echo $modified_files); do
+		echo "- fixing => $file"
+		./node_modules/.bin/eslint --fix "$file"
+	done
+
+	# If ESLint fixed any issues, add the modified files back to the staging area
+	echo "$modified_files" | xargs git add
+fi
+
+echo "Lint Completed. Committing changes to git...";
+
+exit 0

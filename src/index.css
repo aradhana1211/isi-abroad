@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+     font-size: 16px;
+     font-weight: 400;
+     font-family: 'Outfit', sans-serif;
+     color: #425b71;
+}
+@layer base{
+     .form-input {
+          @apply block w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-0 focus:border-primary
+     }
+     .form-label{
+          @apply text-left block mb-1 
+     }
+
+     .btn-primary{
+          @apply py-2 px-7 border border-primary rounded-md hover:bg-primary hover:text-white md:px-4;
+     }
+     .spinner {
+          @apply block w-5 h-5 rounded-full border-2 border-gray-200 border-l-gray-950 animate-[spin_0.4s_linear_0s_infinite];
+     }
+
+     .btn-secondary{
+          @apply py-2 px-7 border border-secondary text-secondary rounded-md hover:bg-secondary hover:text-white;
+     }
+     .btn-danger{
+          @apply py-2 px-7 rounded-md border border-red-600 text-red-600 hover:bg-red-600 hover:text-white
+     }
+     .badge.badge-primary{
+          @apply bg-primary text-base py-1 px-3 text-white rounded-full
+     }
+}
+
+/* width */
+::-webkit-scrollbar {
+     @apply w-2 h-1;
+     
+}
+   
+   /* Track */
+::-webkit-scrollbar-track {
+     @apply bg-slate-100 rounded-lg;
+}
+    
+   /* Handle */
+::-webkit-scrollbar-thumb {
+     @apply bg-primary rounded-lg;
+}
+   
+   /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+     @apply bg-primary/50;
+}
+
+.disabled {
+     opacity: 0.5; /* Make the button appear faded */
+     cursor: not-allowed;
+}
+body:has(.model-open){
+     overflow: hidden;
+}
+
+.badge-primary {
+     @apply px-3 py-1 bg-slate-100 border border-slate-200 rounded-full font-semibold text-sm text-black cursor-pointer hover:bg-primary hover:text-white;
+}
+.h_screen{
+     height: calc(100% - 77px);
+}
+
+.bg-loader {
+     background: url('./assets/images/loader.gif') center no-repeat;
+}

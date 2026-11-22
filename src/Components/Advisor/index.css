@@ -1,0 +1,11 @@
+table,
+table td,
+table th {
+  @apply border-collapse border border-gray-200 py-2 px-4;
+}
+table tbody tr:nth-child(even) {
+  @apply bg-gray-100;
+}
+table tbody tr:hover {
+  @apply bg-gray-50;
+}
